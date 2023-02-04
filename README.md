@@ -1,5 +1,6 @@
 # GetSlackHistory
-Get Slack history with Python and Slack API.
+
+Get Slack conversation data as json files and download files in your workspace with Python and Slack API.
 
 ## config.yaml
 
@@ -18,6 +19,8 @@ config:
 
 ## How to use
 
-1. Make `config.yaml`
+1. Make `config.yaml`.
 
-2. Run `python main.py` in terminal.
+2. If `pyyaml` isn't in your environment, install with `pip install pyyaml`.
+
+3. Run `python main.py` in terminal.
