@@ -3,8 +3,10 @@ import os.path as osp
 import json
 import requests
 
-from load_config import DotDict, load_config
-from get_channels_list import get_channels_list
+from .get_replies import get_replies
+from .get_files import get_files
+from .load_config import DotDict, load_config
+from .get_channels_list import get_channels_list
 
 
 def conversations_request(channel_id, TOKEN, prev_data=None):
@@ -31,7 +33,7 @@ def conversations_request(channel_id, TOKEN, prev_data=None):
     resdata = response.json()
 
     if not resdata["ok"]:
-        print("Error: {}. Cannot get chennel list.".format(resdata["error"]))
+        print("Error: {}. Cannot get conversation data.".format(resdata["error"]))
 
     return resdata
 
@@ -54,6 +56,8 @@ def get_conversations_data(channel, config, save=True):
             more_data = "response_metadata" in resdata
     
     messages = [DotDict(msg) for res in all_resdata for msg in res["messages"]]
+    messages.reverse()
+    messages = [[msg] if "reply_count" not in msg else get_replies(channel_id, msg, config) for msg in messages]
 
     if save:
         os.makedirs(osp.join(config.saveDir,config.workspace,channel_name), exist_ok=True)
@@ -68,7 +72,10 @@ if __name__=="__main__":
     config_path = "config.yaml"
     config = load_config(config_path)
 
-    data = get_channels_list(config)
-    messages = get_conversations_data(data[0], config)
+    channel_data = get_channels_list(config)
+    messages = get_conversations_data(channel_data[5], config)
 
-    print(messages[0].text)
+    get_files(messages[-4][0], channel_data[5], config)
+
+    print(messages[-4][0])
+    # print(messages[12])

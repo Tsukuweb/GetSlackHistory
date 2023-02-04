@@ -3,7 +3,7 @@ import os.path as osp
 import json
 import requests
 
-from load_config import DotDict, load_config
+from .load_config import DotDict, load_config
 
 
 def get_channels_list(config, save=True):
