@@ -2,7 +2,7 @@ import os
 import os.path as osp
 import requests
 
-from .load_config import DotDict, load_config
+from .load_config import DotDict
 
 
 def download_file(fileurl, filename, channel, config):
@@ -23,8 +23,6 @@ def download_file(fileurl, filename, channel, config):
 
 def get_files(message, channel, config):
 
-    # print(type(message))
-
     for file in message.files:
         
         file = DotDict(file)
@@ -40,11 +38,3 @@ def get_files(message, channel, config):
         filename = "{}-{}-{}".format(file.id, file.user, file.name)
 
         download_file(fileurl, filename, channel, config)
-
-
-if __name__=="__main__":
-
-    config_path = "config.yaml"
-    config = load_config(config_path)
-
-    

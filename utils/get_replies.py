@@ -24,7 +24,6 @@ def get_replies(channel_id, message, config):
 
     replies = [DotDict(msg) for msg in resdata.messages]
     
-    ### TimeStampによるPaginationは未実装
-    ### とりあえず今はPaginationなしで実装
+    ### TimeStampによるPagination対応は未実装
 
     return replies

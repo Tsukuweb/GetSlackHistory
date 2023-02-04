@@ -4,9 +4,7 @@ import json
 import requests
 
 from .get_replies import get_replies
-from .get_files import get_files
-from .load_config import DotDict, load_config
-from .get_channels_list import get_channels_list
+from .load_config import DotDict
 
 
 def conversations_request(channel_id, TOKEN, prev_data=None):
@@ -65,17 +63,3 @@ def get_conversations_data(channel, config, save=True):
             json.dump(messages, f, indent=2, ensure_ascii=False)
     
     return messages
-
-
-if __name__=="__main__":
-
-    config_path = "config.yaml"
-    config = load_config(config_path)
-
-    channel_data = get_channels_list(config)
-    messages = get_conversations_data(channel_data[5], config)
-
-    get_files(messages[-4][0], channel_data[5], config)
-
-    print(messages[-4][0])
-    # print(messages[12])

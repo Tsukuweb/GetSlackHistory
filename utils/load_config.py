@@ -13,9 +13,3 @@ def load_config(config_path):
         config = DotDict(yaml.safe_load(f)['config'])
     
     return config
-
-
-if __name__=="__main__":
-    config_path = "config.yaml"
-    config = load_config(config_path)
-    print(config.TOKEN)

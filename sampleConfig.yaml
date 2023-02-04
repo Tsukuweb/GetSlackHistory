@@ -1,0 +1,4 @@
+config:
+  workspace: YourWorkspace
+  saveDir: save
+  TOKEN: Your Slack API token

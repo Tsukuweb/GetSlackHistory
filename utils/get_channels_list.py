@@ -3,7 +3,7 @@ import os.path as osp
 import json
 import requests
 
-from .load_config import DotDict, load_config
+from .load_config import DotDict
 
 
 def get_channels_list(config, save=True):
@@ -27,14 +27,3 @@ def get_channels_list(config, save=True):
             json.dump(resdata, f, indent=2, ensure_ascii=False)
 
     return [DotDict(c) for c in resdata["channels"]]
-
-
-if __name__=="__main__":
-
-    config_path = "config.yaml"
-
-    config = load_config(config_path)
-
-    data = get_channels_list(config)
-
-    print(data[0].name)
