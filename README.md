@@ -18,7 +18,7 @@ The token needs these OAuth Scopes:
 
 ## config.yaml
 
-Write `config.yaml` like `sampleConfig.yaml`.
+Write `config.yaml` referring to `sampleConfig.yaml`.
 
 `config.yaml` needs three informations: `workspace`, `saveDir` and `TOKEN`.
 
